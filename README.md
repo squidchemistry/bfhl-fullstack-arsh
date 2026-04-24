@@ -90,28 +90,3 @@ Process directed edges.
 }
 ```
 
-## Deployment
-
-### Backend → Render
-
-1. Push to GitHub
-2. Create a **Web Service** on [render.com](https://render.com)
-3. Set:
-   - **Root Directory:** `backend`
-   - **Build Command:** `npm install`
-   - **Start Command:** `npm start`
-4. Render auto-sets `PORT`
-
-### Frontend → Vercel / Netlify
-
-1. Create a new project pointing to the `frontend/` directory
-2. No build step needed (static files)
-3. Update `API_BASE_URL` in `js/app.js` to your Render URL
-
-## Configuration
-
-| Setting | Location | Purpose |
-|---------|----------|---------|
-| User metadata | `backend/services/graphService.js` | `user_id`, `email_id`, `college_roll_number` |
-| API URL | `frontend/js/app.js` | `API_BASE_URL` constant |
-| Server port | Environment variable `PORT` | Defaults to `3000` |
