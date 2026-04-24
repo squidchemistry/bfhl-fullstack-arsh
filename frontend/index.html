@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BFHL — Graph Processor</title>
+  <meta name="description" content="Directed graph edge analyzer with hierarchy and cycle detection." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="page">
+
+    <!-- Header -->
+    <header class="header" id="app-header">
+      <div class="header-left">
+        <span class="logo">⬡</span>
+        <span class="wordmark">BFHL</span>
+      </div>
+      <p class="header-desc">Graph Processor</p>
+    </header>
+
+    <main class="main">
+
+      <!-- Input -->
+      <section class="section" id="input-section">
+        <h2 class="section-title">Input</h2>
+        <p class="section-desc">Directed edges — one per line or comma-separated.</p>
+        <textarea
+          id="edge-input"
+          placeholder="A->B&#10;A->C&#10;B->D"
+          rows="5"
+          spellcheck="false"
+        ></textarea>
+        <div class="btn-row">
+          <button id="btn-example" class="btn btn-secondary" type="button">Example</button>
+          <button id="btn-clear" class="btn btn-secondary" type="button">Clear</button>
+          <button id="btn-submit" class="btn btn-primary" type="button">
+            <span id="btn-label">Run</span>
+            <svg id="btn-spinner" class="spinner hidden" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10" stroke-dasharray="50" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- Error -->
+      <div class="error hidden" id="error-banner">
+        <span id="error-message"></span>
+        <button class="error-x" id="error-close" type="button">&times;</button>
+      </div>
+
+      <!-- Results -->
+      <div id="results" class="hidden">
+
+        <!-- Summary -->
+        <section class="section" id="summary-section">
+          <h2 class="section-title">Summary</h2>
+          <div class="stats">
+            <div class="stat"><span class="stat-val" id="val-trees">0</span><span class="stat-key">Trees</span></div>
+            <div class="stat"><span class="stat-val warn" id="val-cycles">0</span><span class="stat-key">Cycles</span></div>
+            <div class="stat"><span class="stat-val" id="val-largest">—</span><span class="stat-key">Largest Root</span></div>
+            <div class="stat"><span class="stat-val" id="val-depth">0</span><span class="stat-key">Max Depth</span></div>
+          </div>
+        </section>
+
+        <!-- Hierarchies -->
+        <section class="section" id="hierarchies-section">
+          <h2 class="section-title">Hierarchies</h2>
+          <div id="hierarchies-content"></div>
+        </section>
+
+        <!-- Diagnostics -->
+        <div class="two-col">
+          <section class="section" id="invalid-section">
+            <div class="section-head-row">
+              <h2 class="section-title">Invalid Entries</h2>
+              <span class="count" id="badge-invalid">0</span>
+            </div>
+            <div id="invalid-content"></div>
+          </section>
+          <section class="section" id="duplicate-section">
+            <div class="section-head-row">
+              <h2 class="section-title">Duplicate Edges</h2>
+              <span class="count" id="badge-duplicate">0</span>
+            </div>
+            <div id="duplicate-content"></div>
+          </section>
+        </div>
+
+        <!-- JSON -->
+        <section class="section" id="raw-section">
+          <button class="section-toggle" id="raw-toggle" type="button">
+            <h2 class="section-title">JSON Response</h2>
+            <span class="arrow" id="raw-chevron">›</span>
+          </button>
+          <pre class="json hidden" id="raw-json"></pre>
+        </section>
+
+      </div>
+    </main>
+
+    <footer class="footer">SRM Full Stack Engineering Challenge</footer>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
